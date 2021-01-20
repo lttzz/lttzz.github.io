@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LTTZZ&#39;s BLOG</title>
+    <link>https://www.lttzz.cn/</link>
+    <description>Recent content on LTTZZ&#39;s BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://www.lttzz.cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Books</title>
+      <link>https://www.lttzz.cn/books/</link>
+      <pubDate>Tue, 17 Aug 1926 00:00:00 +0800</pubDate>
+      
+      <guid>https://www.lttzz.cn/books/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://www.lttzz.cn/about/</link>
+      <pubDate>Tue, 17 Aug 1926 00:00:00 +0800</pubDate>
+      
+      <guid>https://www.lttzz.cn/about/</guid>
+      <description>咱今天还是一条咸鱼呢。</description>
+    </item>
+    
+  </channel>
+</rss>
