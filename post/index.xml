@@ -1,30 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>LTTZZ&#39;s BLOG</title>
-    <link>https://www.lttzz.cn/</link>
-    <description>Recent content on LTTZZ&#39;s BLOG</description>
+    <title>Posts on LTTZZ&#39;s BLOG</title>
+    <link>https://www.lttzz.cn/post/</link>
+    <description>Recent content in Posts on LTTZZ&#39;s BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 21 Jan 2021 09:30:15 +0800</lastBuildDate><atom:link href="https://www.lttzz.cn/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Books</title>
-      <link>https://www.lttzz.cn/books/</link>
-      <pubDate>Tue, 17 Aug 1926 00:00:00 +0800</pubDate>
-      
-      <guid>https://www.lttzz.cn/books/</guid>
-      <description>2021 《天之下》 &amp;ndash; 三弦 《半小时漫画经济学》&amp;ndash; 陈磊 《向死而生》 &amp;ndash; 李开复 《飞行家》 &amp;ndash; 双雪涛 《梦的解析》 &amp;ndash; 弗洛伊德 《你当像鸟飞往你的山》 &amp;ndash;</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://www.lttzz.cn/about/</link>
-      <pubDate>Tue, 17 Aug 1926 00:00:00 +0800</pubDate>
-      
-      <guid>https://www.lttzz.cn/about/</guid>
-      <description>咱今天还是一条咸鱼呢。</description>
-    </item>
-    
+    <lastBuildDate>Thu, 21 Jan 2021 09:30:15 +0800</lastBuildDate><atom:link href="https://www.lttzz.cn/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>408选手复健计划</title>
       <link>https://www.lttzz.cn/post/408%E9%80%89%E6%89%8B%E5%A4%8D%E5%81%A5%E8%AE%A1%E5%88%92/</link>
