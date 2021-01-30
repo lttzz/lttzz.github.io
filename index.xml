@@ -6,14 +6,14 @@
     <description>Recent content on LTTZZ&#39;s BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 21 Jan 2021 09:30:15 +0800</lastBuildDate><atom:link href="https://www.lttzz.cn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Jan 2021 17:39:35 +0800</lastBuildDate><atom:link href="https://www.lttzz.cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Books</title>
       <link>https://www.lttzz.cn/books/</link>
       <pubDate>Tue, 17 Aug 1926 00:00:00 +0800</pubDate>
       
       <guid>https://www.lttzz.cn/books/</guid>
-      <description>2021 《天之下》 &amp;ndash; 三弦 《半小时漫画经济学》&amp;ndash; 陈磊 《向死而生》 &amp;ndash; 李开复 《飞行家》 &amp;ndash; 双雪涛 《梦的解析》 &amp;ndash; 弗洛伊德 《你当像鸟飞往你的山》 &amp;ndash;</description>
+      <description>2021 《天之下》 —— 三弦 《半小时漫画经济学》—— 陈磊 《向死而生》 —— 李开复 《飞行家》 —— 双雪涛 《梦的解析》 —— 弗洛伊德 《你当像鸟飞往你的山》 ——</description>
     </item>
     
     <item>
@@ -23,6 +23,15 @@
       
       <guid>https://www.lttzz.cn/about/</guid>
       <description>咱今天还是一条咸鱼呢。</description>
+    </item>
+    
+    <item>
+      <title>MOOC笔记</title>
+      <link>https://www.lttzz.cn/post/mooc%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 26 Jan 2021 17:39:35 +0800</pubDate>
+      
+      <guid>https://www.lttzz.cn/post/mooc%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;一切要从变态心理学说起 &lt;del&gt;，清一下收藏夹&lt;/del&gt;&amp;hellip;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -41,6 +50,15 @@
       
       <guid>https://www.lttzz.cn/post/hello-world/</guid>
       <description>&lt;p&gt;唔，从hexo换到了hugo，hexo实在是太慢辽。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>生财日历</title>
+      <link>https://www.lttzz.cn/post/%E7%94%9F%E8%B4%A2%E6%97%A5%E5%8E%86/</link>
+      <pubDate>Mon, 18 Jan 2021 22:31:51 +0800</pubDate>
+      
+      <guid>https://www.lttzz.cn/post/%E7%94%9F%E8%B4%A2%E6%97%A5%E5%8E%86/</guid>
+      <description>&lt;p&gt;没错，就是那个男人第一次带货疑似把微信小店服务器搞垮的生财日历。&lt;/p&gt;</description>
     </item>
     
     <item>

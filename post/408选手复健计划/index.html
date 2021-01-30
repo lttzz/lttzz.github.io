@@ -50,7 +50,7 @@
 <meta itemprop="description" content="不能再摸鱼啦。">
 <meta itemprop="datePublished" content="2021-01-21T09:30:15+08:00" />
 <meta itemprop="dateModified" content="2021-01-21T09:30:15+08:00" />
-<meta itemprop="wordCount" content="866">
+<meta itemprop="wordCount" content="3919">
 
 
 
@@ -139,8 +139,8 @@
       <div class="post-meta">
         <span class="post-time"> 2021-01-21 </span>
         
-          <span class="more-meta"> 866 words </span>
-          <span class="more-meta"> 2 mins read </span>
+          <span class="more-meta"> 3919 words </span>
+          <span class="more-meta"> 8 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
     </header>
@@ -172,10 +172,28 @@
         <li><a href="#应用层">应用层</a></li>
       </ul>
     </li>
-    <li><a href="#0x05-linux-c编程一站式学习">0x05 Linux C编程一站式学习</a></li>
+    <li><a href="#0x05-linux-c编程一站式学习">0x05 Linux C编程一站式学习</a>
+      <ul>
+        <li><a href="#0x00-前言">0x00 前言</a></li>
+        <li><a href="#0x01-c语言入门">0x01 C语言入门</a>
+          <ul>
+            <li><a href="#程序的基本概念">程序的基本概念</a></li>
+            <li><a href="#递归">递归</a></li>
+            <li><a href="#使用gdb调试">使用gdb调试</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x02-c语言本质">0x02 C语言本质</a>
+          <ul>
+            <li><a href="#整数">整数</a></li>
+            <li><a href="#2s-complement">2’s Complement</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x03-linux系统编程">0x03 Linux系统编程</a></li>
+      </ul>
+    </li>
     <li><a href="#附录">附录</a>
       <ul>
-        <li><a href="#术语表">术语表</a>
+        <li><a href="#缩写表">缩写表</a>
           <ul>
             <li><a href="#a">A</a></li>
             <li><a href="#b">B</a></li>
@@ -203,6 +221,36 @@
             <li><a href="#x">X</a></li>
             <li><a href="#y">Y</a></li>
             <li><a href="#z">Z</a></li>
+          </ul>
+        </li>
+        <li><a href="#glossary">Glossary</a>
+          <ul>
+            <li><a href="#a-1">A</a></li>
+            <li><a href="#b-1">B</a></li>
+            <li><a href="#c-1">C</a></li>
+            <li><a href="#d-1">D</a></li>
+            <li><a href="#e-1">E</a></li>
+            <li><a href="#f-1">F</a></li>
+            <li><a href="#g-1">G</a></li>
+            <li><a href="#h-1">H</a></li>
+            <li><a href="#i-1">I</a></li>
+            <li><a href="#j-1">J</a></li>
+            <li><a href="#k-1">K</a></li>
+            <li><a href="#l-1">L</a></li>
+            <li><a href="#m-1">M</a></li>
+            <li><a href="#n-1">N</a></li>
+            <li><a href="#o-1">O</a></li>
+            <li><a href="#p-1">P</a></li>
+            <li><a href="#q-1">Q</a></li>
+            <li><a href="#r-1">R</a></li>
+            <li><a href="#s-1">S</a></li>
+            <li><a href="#t-1">T</a></li>
+            <li><a href="#u-1">U</a></li>
+            <li><a href="#v-1">V</a></li>
+            <li><a href="#w-1">W</a></li>
+            <li><a href="#x-1">X</a></li>
+            <li><a href="#y-1">Y</a></li>
+            <li><a href="#z-1">Z</a></li>
           </ul>
         </li>
       </ul>
@@ -260,51 +308,286 @@
 <h2 id="传输层">传输层</h2>
 <h2 id="应用层">应用层</h2>
 <h1 id="0x05-linux-c编程一站式学习">0x05 Linux C编程一站式学习</h1>
-<p>nju ics2020</p>
+<h2 id="0x00-前言">0x00 前言</h2>
+<blockquote>
+<p>学习编程绝不是一件简单的事，尤其是对于零基础的初学者来说。大学的计算机专业有四年时间从零基础开始培养一个人，微积分、线代、随机、离散、组合、自动机、编译原理、操作系统、计算机组成原理等等一堆基础课，再加上C/C++、Java、数据库、网络、软件工程、计算机图形学等等一堆专业课，最后培养出一个能找到工作的学生。很遗憾这最后一条很多学校没有做好，来亚嵌培训的很多学生就是四年这么学过来的，但据我们考查他们的基础几乎为零，我不知道为什么。与之形成鲜明对比的是，只给我们四个月的时间，同样要求从零基础开始，最后培养出一个能找到工作的学生，而且还要保证他找到工作，这就是职业教育的特点。</p>
+<p>为什么我说“只给我们四个月的时间”？我们倒是想教四年呢，但学时的长短我们做不了主，是由市场规律决定的。四年的任务要求四个月做好，要怎么完成这样一个几乎不可能的任务？有些职业教育给出的答案是“实用主义”，打出了“有用就学，没有用就不学”的口号，大肆贬低说大学里教的基础课都是过时的、无用的，只有他们教的技术才是实用的，这种炒作很不好，我认为大学里教的每一门课都是非常有用的，基础知识在任何时候都不会过时，倒是那些时髦的“实用技术”有可能很快就过时了。</p>
+<p>四年的任务怎么才能用四个月做好？我们给出的答案是“优化”。现在大学里安排的课程体系最大的缺点就是根本不考虑优化。每个过来人都会有这样的感觉：大一大二学了好多数学课，却不知道都是干什么用的，为什么要学。连它有什么用都不知道怎么能有兴趣学好呢？然后到大三大四学专业课时，用到以前的知识了，才发现以前学的数学是多么有用，然而早就忘得一干二净了，考完试都还给老师了，回头重新学吧，这时候才发现很多东西以前根本没学明白，现在才真的学明白了，那么前两年的时间岂不是都浪费了？大学里的课程体系还有一个缺点就是不灵活，每门课必须占一个学期，必须由一个老师教，不同课程的老师之间没有任何沟通和衔接，其实这些课程之间是相互依赖的，把它们强行拆开是不符合人的认知规律的。比如我刚上大学的时候，大一上半学期就被逼着学C语言，其实C语言是一门很难的编程语言，不懂编译原理、操作系统和计算机体系结构根本不可能学明白，那半个学期自然就浪费掉了。当时几乎所有学校的计算机相关专业都是这样，大一上来就学C语言，有的学校更疯狂，上来就学C++，导致大多数学生都以为自己会C语言，但其实都是半吊子水平，到真正写代码的时候经常为一个Bug搞得焦头烂额，却没有机会再系统地学一遍C语言，因为在学校看来，C语言课早在大一就给你“上完了”，就像一顿饭已经吃完了，不管你吃饱没吃饱，不会再让你重吃一遍了。显而易见，如果要认真地对这些课程做优化，的确是有很多水份可以挤的。</p>
+</blockquote>
+<blockquote>
+<p>学习的过程总是这样，初学者一开始接触的很多概念从严格意义上说是错的，但是很容易理解，随着一步步学习，在理解原有概念的基础上不断纠正，不断泛化（Generalize）。</p>
+</blockquote>
+<blockquote>
+<p>在运用逻辑推理时一定要注意，不要把必要条件（Necessary Condition）当充分条件（Sufficient Condition）。</p>
+</blockquote>
+<p>nju ics2020 pa reference里提到的，对了，这本<a href="https://docs.huihoo.com/c/linux-c-programming/index.html">电子书</a>最后更新于2009.2.27。</p>
+<h2 id="0x01-c语言入门">0x01 C语言入门</h2>
+<h3 id="程序的基本概念">程序的基本概念</h3>
+<p>形式语言（Formal language）有别于自然语言（Natural Language），是为了特定的应用而人为设计的语言，有严格的语法（Syntax）规则，语法规则有符号（Token）和结构（Structure）的规则构成，结构关注的是Token的排列方式。关于Token的规则成为词法（Lexical）规则，关于结构的规则称为语法（Grammar）规则。分析句子结构的过程成为解析（Parse），属于语义（Semantic）的范畴。</p>
+<h3 id="递归">递归</h3>
+<p>leap of faith: If you take a leap of faith, you do something even though you are not sure it is right or will succeed.</p>
+<blockquote>
+<p>如果你相信你正在写的递归函数是正确的，并调用它，然后在此基础上写完这个递归函数，那么它就会是正确的，从而值得你相信它正确。</p>
+<p>这么说好像有点儿玄，以阶乘函数为例在数学上严格证明一下factorial函数的正确性。刚才说了，factorial(n)的正确性依赖于factorial(n-1)的正确性，只要后者正确，在后者的结果上乘个n返回这一步显然也没有疑问，那么我们的函数实现就是正确的。因此要证明factorial(n)的正确性就是要证明factorial(n-1)的正确性，同理，要证明factorial(n-1)的正确性就是要证明factorial(n-2)的正确性，依此类推下去，最后是：要证明factorial(1)的正确性就是要证明factorial(0)的正确性。而factorial(0)的正确性不依赖于别的函数调用，它就是程序中的一个小的分支return 1;，这个1是我们根据阶乘的定义写的，肯定是正确的，因此factorial(1)的实现是正确的，因此factorial(2)也正确，依此类推，最后factorial(n)也是正确的。其实这就是在中学时学的数学归纳法（Mathematical Induction），用数学归纳法来证明只需要证明两点：Base Case正确，递推关系正确。写递归函数时一定要记得写Base Case，否则即使递推关系正确，整个函数也不正确。</p>
+</blockquote>
+<p>递归这边和labuladong讲的很类似，都强调了信任。</p>
+<h3 id="使用gdb调试">使用gdb调试</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>backtrace（或bt）</td>
+<td>查看各级函数调用及参数</td>
+</tr>
+<tr>
+<td>finish</td>
+<td>连续运行到当前函数返回为止，然后停下来等待命令</td>
+</tr>
+<tr>
+<td>frame（或f） 帧编号</td>
+<td>选择栈帧</td>
+</tr>
+<tr>
+<td>info（或i） locals</td>
+<td>查看当前栈帧局部变量的值</td>
+</tr>
+<tr>
+<td>list（或l）</td>
+<td>列出源代码，接着上次的位置往下列，每次列10行</td>
+</tr>
+<tr>
+<td>list 行号</td>
+<td>列出从第几行开始的源代码</td>
+</tr>
+<tr>
+<td>list 函数名</td>
+<td>列出某个函数的源代码</td>
+</tr>
+<tr>
+<td>next（或n）</td>
+<td>执行下一行语句</td>
+</tr>
+<tr>
+<td>print（或p）</td>
+<td>打印表达式的值，通过表达式可以修改变量的值或者调用函数</td>
+</tr>
+<tr>
+<td>quit（或q）</td>
+<td>退出<code>gdb</code>调试环境</td>
+</tr>
+<tr>
+<td>set var</td>
+<td>修改变量的值</td>
+</tr>
+<tr>
+<td>start</td>
+<td>开始执行程序，停在<code>main</code>函数第一行语句前面等待命令</td>
+</tr>
+<tr>
+<td>step（或s）</td>
+<td>执行下一行语句，如果有函数调用则进入到函数中</td>
+</tr>
+<tr>
+<td>break（或b） 行号</td>
+<td>在某一行设置断点</td>
+</tr>
+<tr>
+<td>break 函数名</td>
+<td>在某个函数开头设置断点</td>
+</tr>
+<tr>
+<td>break &hellip; if &hellip;</td>
+<td>设置条件断点</td>
+</tr>
+<tr>
+<td>continue（或c）</td>
+<td>从当前位置开始连续运行程序</td>
+</tr>
+<tr>
+<td>delete breakpoints 断点号</td>
+<td>删除断点</td>
+</tr>
+<tr>
+<td>display 变量名</td>
+<td>跟踪查看某个变量，每次停下来都显示它的值</td>
+</tr>
+<tr>
+<td>disable breakpoints 断点号</td>
+<td>禁用断点</td>
+</tr>
+<tr>
+<td>enable 断点号</td>
+<td>启用断点</td>
+</tr>
+<tr>
+<td>info（或i） breakpoints</td>
+<td>查看当前设置了哪些断点</td>
+</tr>
+<tr>
+<td>run（或r）</td>
+<td>从头开始连续运行程序</td>
+</tr>
+<tr>
+<td>undisplay 跟踪显示号</td>
+<td>取消跟踪显示</td>
+</tr>
+<tr>
+<td>watch</td>
+<td>设置观察点</td>
+</tr>
+<tr>
+<td>info（或i） watchpoints</td>
+<td>查看当前设置了哪些观察点</td>
+</tr>
+<tr>
+<td>x</td>
+<td>从某个位置开始打印存储单元的内容，全部当成字节来看，而不区分哪个字节属于哪个变量</td>
+</tr>
+</tbody>
+</table>
+<h2 id="0x02-c语言本质">0x02 C语言本质</h2>
+<h3 id="整数">整数</h3>
+<h4 id="1s-complement">1‘s Complement</h4>
+<p>负数用1的补码（1&rsquo;s Complement）表示，减法转换成加法，计算结果的最高位如果有进位则要加回到最低位上去。取1的补码就是把每个bit取反，所以1的补码也称为反码。但是0的表示不唯一。</p>
+<p>00001000-00000100 → 00001000+(-00000100) → 00001000+11111011 → 00000011进1 → 高位进的1加到低位上去，结果为00000100</p>
+<h3 id="2s-complement">2’s Complement</h3>
+<p>2&rsquo;s Complement表示法规定：正数不变，负数先取反码再加1，减法转换成加法，忽略计算结果最高位的进位，不必加回到最低位上去。</p>
+<h2 id="0x03-linux系统编程">0x03 Linux系统编程</h2>
 <h1 id="附录">附录</h1>
-<h2 id="术语表">术语表</h2>
+<h2 id="缩写表">缩写表</h2>
 <h3 id="a">A</h3>
-<p>AON：Active Optical Network</p>
+<p>AON: Active Optical Network</p>
+<p>ASCII: American Standard Code for Information Interchange</p>
+<p>ASLR: Address-Space Layout Randomization</p>
+<p>AVX: Advance Vector Extension</p>
+<p>ARM: Acorn RISC Machine</p>
 <h3 id="b">B</h3>
 <h3 id="c">C</h3>
 <h3 id="d">D</h3>
-<p>DSL：Digital Subscriber Line</p>
+<p>DSL: Digital Subscriber Line</p>
 <h3 id="e">E</h3>
-<p>encapsulation</p>
 <h3 id="f">F</h3>
-<p>FTTH：Fiber To The Home</p>
-<p>FDM：Frequency-Division Multiplexing</p>
+<p>FTTH: Fiber To The Home</p>
+<p>FDM: Frequency-Division Multiplexing</p>
 <h3 id="g">G</h3>
 <h3 id="h">H</h3>
+<p>HCL: Hardware Control language</p>
+<p>HDL: Haraware Description Language</p>
 <h3 id="i">I</h3>
-<p>ISP：Internet Service Provider</p>
-<p>IP：Internet Protocol</p>
-<p>IETF：Internet Engineering Task Force</p>
-<p>IXP：Internet Exchange Point</p>
+<p>i18n: internationalization</p>
+<p>ISP: Internet Service Provider</p>
+<p>IP: Internet Protocol</p>
+<p>IETF: Internet Engineering Task Force</p>
+<p>IXP: Internet Exchange Point</p>
 <h3 id="j">J</h3>
 <h3 id="k">K</h3>
 <h3 id="l">L</h3>
-<p>LTE：Long-Term Evolution</p>
+<p>LTE: Long-Term Evolution</p>
+<p>l10n: localization</p>
+<p>LSB: Least Significant Bit</p>
 <h3 id="m">M</h3>
+<p>MSB: Most Significant Bit</p>
+<p>MMX: MultiMedia eXtensions</p>
 <h3 id="n">N</h3>
 <h3 id="o">O</h3>
-<p>OC：Optical Carrierx</p>
+<p>OC: Optical Carrierx</p>
 <h3 id="p">P</h3>
-<p>PON：PastIve Optical Network</p>
+<p>PON: PastIve Optical Network</p>
 <h3 id="q">Q</h3>
 <h3 id="r">R</h3>
-<p>RFC：Request For Comment</p>
+<p>RFC: Request For Comment</p>
 <h3 id="s">S</h3>
+<p>SOL: Structured Query Language</p>
+<p>SISD: Single Instruction Single Data</p>
+<p>SIMD: Single Instruction Multiple Data</p>
+<p>SSE: Streaming SIMD Extension</p>
 <h3 id="t">T</h3>
-<p>TCP：Transmission Control Protocol</p>
-<p>TDM：Time-Division Multiplexing</p>
+<p>TCP: Transmission Control Protocol</p>
+<p>TDM: Time-Division Multiplexing</p>
 <h3 id="u">U</h3>
-<p>UTP：Unshielded Twisted Pair</p>
+<p>UTP: Unshielded Twisted Pair</p>
 <h3 id="v">V</h3>
 <h3 id="w">W</h3>
 <h3 id="x">X</h3>
 <h3 id="y">Y</h3>
 <h3 id="z">Z</h3>
+<h2 id="glossary">Glossary</h2>
+<h3 id="a-1">A</h3>
+<p>architecture: 体系结构</p>
+<p>assignment: 赋值</p>
+<p>argument: 实参</p>
+<h3 id="b-1">B</h3>
+<p>backtrace: 回溯</p>
+<h3 id="c-1">C</h3>
+<p>comment: 注释</p>
+<p>constant: 常量</p>
+<p>composition: 组合</p>
+<p>colon: 冒号</p>
+<h3 id="d-1">D</h3>
+<p>delimiter: 定界符</p>
+<p>declaration: 声明</p>
+<p>definition: 定义</p>
+<p>directive: 指令</p>
+<h3 id="e-1">E</h3>
+<p>encapsulation: 封装</p>
+<p>exponent: 阶码</p>
+<h3 id="f-1">F</h3>
+<h3 id="g-1">G</h3>
+<p>grammar: 语法</p>
+<h3 id="h-1">H</h3>
+<h3 id="i-1">I</h3>
+<p>indent: 缩进</p>
+<p>identifier: 标识符</p>
+<p>initialization: 初始化</p>
+<h3 id="j-1">J</h3>
+<h3 id="k-1">K</h3>
+<h3 id="l-1">L</h3>
+<p>Lexical: 词法</p>
+<p>literal: 字面</p>
+<p>lvalue: 左值</p>
+<p>loop invariant: 循环不变式</p>
+<h3 id="m-1">M</h3>
+<h3 id="n-1">N</h3>
+<h3 id="o-1">O</h3>
+<p>operand: 操作数</p>
+<h3 id="p-1">P</h3>
+<p>placeholder: 占位符</p>
+<p>precedence: 优先级</p>
+<p>parenthesis: 圆括号</p>
+<p>prototype: 原型</p>
+<p>parameter: 形参</p>
+<p>predicate: 谓词</p>
+<p>prefix: 前缀</p>
+<p>postfix: 后缀</p>
+<p>pseudorandom: 伪随机数</p>
+<p>pseudocode: 伪代码</p>
+<h3 id="q-1">Q</h3>
+<h3 id="r-1">R</h3>
+<p>redundancy: 冗余性</p>
+<p>rvalue: 右值</p>
+<p>rationale: 基本原理，根本原因</p>
+<h3 id="s-1">S</h3>
+<p>syntax: 语法，通常包括lexical和grammar</p>
+<p>semantic: 语义</p>
+<p>semicolon: 分号</p>
+<p>slash: 斜线</p>
+<p>significand: 尾数</p>
+<h3 id="t-1">T</h3>
+<p>token: 符号</p>
+<p>turncate: 截断</p>
+<h3 id="u-1">U</h3>
+<p>underscore: 下划线</p>
+<h3 id="v-1">V</h3>
+<p>variable: 变量</p>
+<h3 id="w-1">W</h3>
+<h3 id="x-1">X</h3>
+<h3 id="y-1">Y</h3>
+<h3 id="z-1">Z</h3>
     </div>
 
     
@@ -313,7 +596,11 @@
           <a href="/tags/408/">408</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/mooc%E7%AC%94%E8%AE%B0/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">MOOC笔记</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
         <a class="next" href="/post/hello-world/">
             <span class="next-text nav-default">Hello World</span>
             <span class="next-text nav-mobile">Next</span>

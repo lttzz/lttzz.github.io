@@ -16,6 +16,48 @@
   </url>
   
   <url>
+    <loc>https://www.lttzz.cn/</loc>
+    <lastmod>2021-01-26T17:39:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lttzz.cn/tags/mooc/</loc>
+    <lastmod>2021-01-26T17:39:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lttzz.cn/post/mooc%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2021-01-26T17:39:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lttzz.cn/tags/notes/</loc>
+    <lastmod>2021-01-26T17:39:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lttzz.cn/post/</loc>
+    <lastmod>2021-01-26T17:39:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lttzz.cn/tags/</loc>
+    <lastmod>2021-01-26T17:39:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://www.lttzz.cn/tags/408/</loc>
     <lastmod>2021-01-21T09:30:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -24,27 +66,6 @@
   
   <url>
     <loc>https://www.lttzz.cn/post/408%E9%80%89%E6%89%8B%E5%A4%8D%E5%81%A5%E8%AE%A1%E5%88%92/</loc>
-    <lastmod>2021-01-21T09:30:15+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.lttzz.cn/</loc>
-    <lastmod>2021-01-21T09:30:15+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.lttzz.cn/post/</loc>
-    <lastmod>2021-01-21T09:30:15+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.lttzz.cn/tags/</loc>
     <lastmod>2021-01-21T09:30:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -67,6 +88,13 @@
   <url>
     <loc>https://www.lttzz.cn/tags/hugo/</loc>
     <lastmod>2021-01-20T22:49:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lttzz.cn/post/%E7%94%9F%E8%B4%A2%E6%97%A5%E5%8E%86/</loc>
+    <lastmod>2021-01-18T22:31:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -115,13 +143,6 @@
   
   <url>
     <loc>https://www.lttzz.cn/tags/assembly-language/</loc>
-    <lastmod>2019-03-17T14:38:51+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.lttzz.cn/tags/notes/</loc>
     <lastmod>2019-03-17T14:38:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
