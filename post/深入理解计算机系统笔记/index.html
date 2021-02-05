@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>深入理解计算机系统笔记 - LTTZZ&#39;s BLOG</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="lttzz" /><meta name="description" content="快毕业了还没完整看过一遍&amp;hellip;
+" /><meta name="keywords" content="Hugo, theme, even, lttzz" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.lttzz.cn/post/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script data-ad-client="ca-pub-6866630216233951" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="深入理解计算机系统笔记" />
+<meta property="og:description" content="快毕业了还没完整看过一遍&hellip;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.lttzz.cn/post/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/" />
+<meta property="article:published_time" content="2021-01-14T10:44:51+08:00" />
+<meta property="article:modified_time" content="2021-01-14T10:44:51+08:00" />
+<meta itemprop="name" content="深入理解计算机系统笔记">
+<meta itemprop="description" content="快毕业了还没完整看过一遍&hellip;">
+<meta itemprop="datePublished" content="2021-01-14T10:44:51+08:00" />
+<meta itemprop="dateModified" content="2021-01-14T10:44:51+08:00" />
+<meta itemprop="wordCount" content="4331">
+
+
+
+<meta itemprop="keywords" content="notes,csapp," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="深入理解计算机系统笔记"/>
+<meta name="twitter:description" content="快毕业了还没完整看过一遍&hellip;"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">LTTZZ&#39;s BLOG</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/books/">
+        <li class="mobile-menu-item">Books</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">LTTZZ&#39;s BLOG</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/books/">Books</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">深入理解计算机系统笔记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-01-14 </span>
+        
+          <span class="more-meta"> 4331 words </span>
+          <span class="more-meta"> 9 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x00-概述">0x00 概述</a></li>
+    <li><a href="#0x01-计算机系统漫游">0x01 计算机系统漫游</a></li>
+    <li><a href="#0x02-信息的表示和处理">0x02 信息的表示和处理</a></li>
+    <li><a href="#0x03-程序的机器级表示">0x03 程序的机器级表示</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#概述">概述</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#0x04-处理器体系结构">0x04 处理器体系结构</a></li>
+    <li><a href="#0x05-优化程序性能">0x05 优化程序性能</a>
+      <ul>
+        <li><a href="#表示程序的性能">表示程序的性能</a></li>
+        <li><a href="#优化编译器的能力和局限性">优化编译器的能力和局限性</a>
+          <ul>
+            <li><a href="#memory-aliasing">Memory Aliasing</a></li>
+            <li><a href="#函数调用">函数调用</a></li>
+          </ul>
+        </li>
+        <li><a href="#优化程序性能">优化程序性能</a>
+          <ul>
+            <li><a href="#例子">例子</a></li>
+            <li><a href="#消除低效的循环">消除低效的循环</a></li>
+            <li><a href="#减少过程调用">减少过程调用</a></li>
+            <li><a href="#消除不必要的内存引用">消除不必要的内存引用</a></li>
+          </ul>
+        </li>
+        <li><a href="#循环展开">循环展开</a></li>
+        <li><a href="#提高并行性">提高并行性</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#理解现代处理器">理解现代处理器</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>快毕业了还没完整看过一遍&hellip;</p>
+<h1 id="0x00-概述">0x00 概述</h1>
+<p>$700$+​p，绝对的大部头，然而很适合大一大二这个样子读，建立起关于计算机的big picture <del>（不知道咋精准的翻译这个词组，看过MIT 18.06, Linear Algebra 的应该经常听到<em>Gilbert Strang</em> 提及）</del>，对于之后的深入学习益处多多。</p>
+<h1 id="0x01-计算机系统漫游">0x01 计算机系统漫游</h1>
+<h1 id="0x02-信息的表示和处理">0x02 信息的表示和处理</h1>
+<h1 id="0x03-程序的机器级表示">0x03 程序的机器级表示</h1>
+<h3 id="概述">概述</h3>
+<p>基于x86-64的ATT格式汇编，旨在教会读者看懂汇编，所以不同于王爽汇编的结构，没有很系统 <del>模式化</del> 的自底向上讲解汇编语法，而是从c语言代码生成汇编代码，自顶向下的讲解。</p>
+<h1 id="0x04-处理器体系结构">0x04 处理器体系结构</h1>
+<h1 id="0x05-优化程序性能">0x05 优化程序性能</h1>
+<p>程序性能的优化要考虑两个方面，一是编程语言级的，消除不必要的工作，如不必要的函数调用、条件测试和内存引用；二是在了解处理器运作的基础上，充分利用处理器提供的指令并行能力，同时执行多条指令。</p>
+<p>研究程序的汇编代码表示，不断修改源代码，视图欺骗编译器以生成高效的机器指令是编写高性能程序的主要方式。</p>
+<h2 id="表示程序的性能">表示程序的性能</h2>
+<p>引入度量标准每元素的周期数（Cycle Per Element，CPE）。</p>
+<p><img src="/Picbed/2021_02/0202_03.png" alt="psum1 and psum2"></p>
+<p><img src="/Picbed/2021_02/0202_02.png" alt="cpe"></p>
+<p>用最小二乘法拟合数据，$pusm1 : y = 368 + 9n$，$pusm2: y = 368 + 6n$，那么记pusm1和pusm2的CPE分别为 $9$ 和 $6$。（大 $O$ 记法里面的忽略掉的系数，粒度不同吧，CPE更精细些。</p>
+<h2 id="优化编译器的能力和局限性">优化编译器的能力和局限性</h2>
+<h3 id="memory-aliasing">Memory Aliasing</h3>
+<p>大多数的编译器，如GCC都提供了优化机制，从 $O0$ ~ $O3$ 优化等级逐渐升高，此外还有用来优化代码尺寸的$Os$。</p>
+<p>实际上，编译器在进行优化的时候，也会遇到很多纠结的地方。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// 只从内存访问的角度看，twiddle1读*x两次，读*y两次，写*x两次，一共六次
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">twiddle1</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="o">*</span><span class="n">x</span> <span class="o">+=</span> <span class="o">*</span><span class="n">y</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">x</span> <span class="o">+=</span> <span class="o">*</span><span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// twiddle2读*x一次，读*y一次，写*x一次，一共三次
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">twiddle2</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="o">*</span><span class="n">x</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="o">*</span><span class="n">y</span><span class="p">;</span>
+<span class="p">}</span> 
+
+<span class="c1">// 那么是编译器否能将twiddle1优化成twiddle2呢？
+</span><span class="c1">// 不能的，这里涉及到的情况是内存别名使用
+</span><span class="c1">// 考虑 x==y 的情况，twiddle1最后的结果是增加后又增加，最后变成了四倍的原值
+</span><span class="c1">// twiddle2则是直接加了两倍，最后变成了三倍的原值
+</span><span class="c1">// 也就是说，twiddle1和twiddle2并不是等价的，并不能这样子优化
+</span></code></pre></td></tr></table>
+</div>
+</div><p>编译器的优化就这么辣鸡吗？不是。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">sum</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>猜猜GCC会如何优化呢？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">; -O0
+; 显然就是直接翻译了，传参、函数调用都有
+0000000000001131 &lt;main&gt;:
+    1131:	55                   	push   %rbp
+    1132:	48 89 e5             	mov    %rsp,%rbp
+    1135:	be 02 00 00 00       	mov    $0x2,%esi
+    113a:	bf 01 00 00 00       	mov    $0x1,%edi
+    113f:	e8 d5 ff ff ff       	callq  1119 &lt;sum&gt;
+    1144:	b8 00 00 00 00       	mov    $0x0,%eax
+    1149:	5d                   	pop    %rbp
+    114a:	c3                   	retq   
+    114b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+    
+; -O1
+; ？？？？？
+; 想想没毛病，主函数调用了一个没卵用的函数，直接优化掉好了
+000000000000111a &lt;main&gt;:
+    111a:	b8 00 00 00 00       	mov    $0x0,%eax
+    111f:	c3                   	retq
+
+; -O2
+0000000000001020 &lt;main&gt;:
+    1020:	31 c0                	xor    %eax,%eax
+    1022:	c3                   	retq   
+    1023:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+    102a:	00 00 00 
+    102d:	0f 1f 00             	nopl   (%rax)
+
+; -O3
+0000000000001020 &lt;main&gt;:
+    1020:	31 c0                	xor    %eax,%eax
+    1022:	c3                   	retq   
+    1023:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+    102a:	00 00 00 
+    102d:	0f 1f 00             	nopl   (%rax)
+
+; -Os
+0000000000001020 &lt;main&gt;:
+    1020:	31 c0                	xor    %eax,%eax
+    1022:	c3                   	retq   
+    1023:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+    102a:	00 00 00 
+    102d:	0f 1f 00             	nopl   (%rax)
+    
+; O2 和 O3 又采取了不同的优化思路（但我没看懂
+; gdb 反汇编出来的是下面这样，能理解
+Dump of assembler code for function main:
+   0x0000000000001020 &lt;+0&gt;:	xor    eax,eax
+   0x0000000000001022 &lt;+2&gt;:	ret 
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到，编译器会把“垃圾”优化掉。很棒哎，再看一个例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">;</span>
+<span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>			<span class="c1">// 3000
+</span><span class="c1"></span><span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>			<span class="c1">// 1000
+</span><span class="c1"></span><span class="n">t1</span> <span class="o">=</span> <span class="o">*</span><span class="n">q</span><span class="p">;</span>		<span class="c1">// 1000 or 3000
+</span></code></pre></td></tr></table>
+</div>
+</div><p>同样也是内存别名引用问题，q和p可能指向同一块内存所以并不能将第五行代码优化掉，虽然它“看起来”没啥子用，编译器会假定所有可能的情况都有可能发生。</p>
+<p>类似的还有，C/C++学到指针哪一块的时候，很多老师爱举<code>swap()</code>的例子，然后嘞，有如下版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="o">*</span><span class="n">y</span><span class="p">;</span>   <span class="c1">// x+y
+</span><span class="c1"></span>    <span class="o">*</span><span class="n">y</span> <span class="o">=</span> <span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="o">*</span><span class="n">y</span><span class="p">;</span>   <span class="c1">// x+y-y = x
+</span><span class="c1"></span>    <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="o">*</span><span class="n">y</span><span class="p">;</span>   <span class="c1">// x+y-x = y
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;a = %d, b = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+    <span class="n">swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;a = %d, b = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// $ ./a.out 
+</span><span class="c1">// a = 1, b = 2
+</span><span class="c1">// a = 2, b = 1
+</span></code></pre></td></tr></table>
+</div>
+</div><p>编译运行，<code>swap()</code>看起来没问题，但是当<code>swap(&amp;a, &amp;a)</code>呢？显然是把传进来的参数给清零了。说这个例子在于，内存别名引用的问题不光是会让编译器头疼。</p>
+<h3 id="函数调用">函数调用</h3>
+<p>除了内存别名引用，编译器优化过程中遇到的另一个问题是函数调用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">f</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">func1</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">()</span> <span class="o">+</span> <span class="n">f</span><span class="p">()</span> <span class="o">+</span> <span class="n">f</span><span class="p">()</span> <span class="o">+</span> <span class="n">f</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">func2</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">f</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// printf(&#34;func1: %d\n&#34;, func1());
+</span><span class="c1"></span>    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;func1: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">func2</span><span class="p">());</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>是不能将<code>func1()</code>随意地优化成<code>func2()</code>的，尽管<code>func2()</code>性能会好得多。编译器依旧是假设了最糟糕的情况，即所有的函数都有副作用，并保持所有的函数调用关系不变。</p>
+<p>C++引入了<code>inline</code>关键字，将是否优化（展开）的建议权交给程序员。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">// 编译参数： g++ counter.c -g -O1
+</span><span class="c1"></span>
+<span class="c1">// int f()
+</span><span class="c1"></span><span class="mo">000000000000113</span><span class="mi">9</span> <span class="o">&lt;</span><span class="n">_Z1fv</span><span class="o">&gt;:</span>
+    <span class="mi">1139</span><span class="o">:</span>	<span class="mi">8</span><span class="n">b</span> <span class="mo">05</span> <span class="n">f5</span> <span class="mi">2</span><span class="n">e</span> <span class="mo">00</span> <span class="mo">00</span>    	<span class="n">mov</span>    <span class="mh">0x2ef5</span><span class="p">(</span><span class="o">%</span><span class="n">rip</span><span class="p">),</span><span class="o">%</span><span class="n">eax</span>        <span class="err">#</span> <span class="mi">4034</span> <span class="o">&lt;</span><span class="n">counter</span><span class="o">&gt;</span>
+    <span class="mf">113f</span><span class="o">:</span>	<span class="mi">8</span><span class="n">d</span> <span class="mi">50</span> <span class="mo">01</span>             	<span class="n">lea</span>    <span class="mh">0x1</span><span class="p">(</span><span class="o">%</span><span class="n">rax</span><span class="p">),</span><span class="o">%</span><span class="n">edx</span>
+    <span class="mi">1142</span><span class="o">:</span>	<span class="mi">89</span> <span class="mi">15</span> <span class="n">ec</span> <span class="mi">2</span><span class="n">e</span> <span class="mo">00</span> <span class="mo">00</span>    	<span class="n">mov</span>    <span class="o">%</span><span class="n">edx</span><span class="p">,</span><span class="mh">0x2eec</span><span class="p">(</span><span class="o">%</span><span class="n">rip</span><span class="p">)</span>        <span class="err">#</span> <span class="mi">4034</span> <span class="o">&lt;</span><span class="n">counter</span><span class="o">&gt;</span>
+    <span class="mi">1148</span><span class="o">:</span>	<span class="n">c3</span>                   	<span class="n">retq</span>   
+<span class="mo">000000000000114</span><span class="mi">9</span> <span class="o">&lt;</span><span class="n">_Z5func1v</span><span class="o">&gt;:</span>
+    <span class="mi">1149</span><span class="o">:</span>	<span class="mi">53</span>                   	<span class="n">push</span>   <span class="o">%</span><span class="n">rbx</span>
+    <span class="mi">114</span><span class="nl">a</span><span class="p">:</span>	<span class="n">e8</span> <span class="n">ea</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span>       	<span class="n">callq</span>  <span class="mi">1139</span> <span class="o">&lt;</span><span class="n">_Z1fv</span><span class="o">&gt;</span>
+    <span class="mf">114f</span><span class="o">:</span>	<span class="mi">89</span> <span class="n">c3</span>                	<span class="n">mov</span>    <span class="o">%</span><span class="n">eax</span><span class="p">,</span><span class="o">%</span><span class="n">ebx</span>
+    <span class="mi">1151</span><span class="o">:</span>	<span class="n">e8</span> <span class="n">e3</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span>       	<span class="n">callq</span>  <span class="mi">1139</span> <span class="o">&lt;</span><span class="n">_Z1fv</span><span class="o">&gt;</span>
+    <span class="mi">1156</span><span class="o">:</span>	<span class="mo">01</span> <span class="n">c3</span>                	<span class="n">add</span>    <span class="o">%</span><span class="n">eax</span><span class="p">,</span><span class="o">%</span><span class="n">ebx</span>
+    <span class="mi">1158</span><span class="o">:</span>	<span class="n">e8</span> <span class="n">dc</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span>       	<span class="n">callq</span>  <span class="mi">1139</span> <span class="o">&lt;</span><span class="n">_Z1fv</span><span class="o">&gt;</span>
+    <span class="mi">115</span><span class="nl">d</span><span class="p">:</span>	<span class="mo">01</span> <span class="n">c3</span>                	<span class="n">add</span>    <span class="o">%</span><span class="n">eax</span><span class="p">,</span><span class="o">%</span><span class="n">ebx</span>
+    <span class="mf">115f</span><span class="o">:</span>	<span class="n">e8</span> <span class="n">d5</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span>       	<span class="n">callq</span>  <span class="mi">1139</span> <span class="o">&lt;</span><span class="n">_Z1fv</span><span class="o">&gt;</span>
+    <span class="mi">1164</span><span class="o">:</span>	<span class="mo">01</span> <span class="n">d8</span>                	<span class="n">add</span>    <span class="o">%</span><span class="n">ebx</span><span class="p">,</span><span class="o">%</span><span class="n">eax</span>
+    <span class="mi">1166</span><span class="o">:</span>	<span class="mi">5</span><span class="n">b</span>                   	<span class="n">pop</span>    <span class="o">%</span><span class="n">rbx</span>
+    <span class="mi">1167</span><span class="o">:</span>	<span class="n">c3</span>                   	<span class="n">retq</span>   
+<span class="mo">000000000000116</span><span class="mi">8</span> <span class="o">&lt;</span><span class="n">_Z5func2v</span><span class="o">&gt;:</span>
+    <span class="mi">1168</span><span class="o">:</span>	<span class="n">e8</span> <span class="n">cc</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span>       	<span class="n">callq</span>  <span class="mi">1139</span> <span class="o">&lt;</span><span class="n">_Z1fv</span><span class="o">&gt;</span>
+    <span class="mi">116</span><span class="nl">d</span><span class="p">:</span>	<span class="n">c1</span> <span class="n">e0</span> <span class="mo">02</span>             	<span class="n">shl</span>    <span class="err">$</span><span class="mh">0x2</span><span class="p">,</span><span class="o">%</span><span class="n">eax</span>
+    <span class="mi">1170</span><span class="o">:</span>	<span class="n">c3</span>                   	<span class="n">retq</span> 
+
+<span class="c1">// inline int f()
+</span><span class="c1">// 可以看到，f()的机器码被复制到了func1和func2中
+</span><span class="c1">// 在func2里，替换掉了函数调用
+</span><span class="c1">// 在func1里，不光展开了，还进行了一定的优化
+</span><span class="c1"></span><span class="mo">000000000000113</span><span class="mi">9</span> <span class="o">&lt;</span><span class="n">_Z5func1v</span><span class="o">&gt;:</span>
+    <span class="mi">1139</span><span class="o">:</span>	<span class="mi">8</span><span class="n">b</span> <span class="mo">05</span> <span class="n">f5</span> <span class="mi">2</span><span class="n">e</span> <span class="mo">00</span> <span class="mo">00</span>    	<span class="n">mov</span>    <span class="mh">0x2ef5</span><span class="p">(</span><span class="o">%</span><span class="n">rip</span><span class="p">),</span><span class="o">%</span><span class="n">eax</span>        <span class="err">#</span> <span class="mi">4034</span> <span class="o">&lt;</span><span class="n">counter</span><span class="o">&gt;</span>
+    <span class="mf">113f</span><span class="o">:</span>	<span class="mi">8</span><span class="n">d</span> <span class="mi">50</span> <span class="mo">04</span>             	<span class="n">lea</span>    <span class="mh">0x4</span><span class="p">(</span><span class="o">%</span><span class="n">rax</span><span class="p">),</span><span class="o">%</span><span class="n">edx</span>
+    <span class="mi">1142</span><span class="o">:</span>	<span class="mi">89</span> <span class="mi">15</span> <span class="n">ec</span> <span class="mi">2</span><span class="n">e</span> <span class="mo">00</span> <span class="mo">00</span>    	<span class="n">mov</span>    <span class="o">%</span><span class="n">edx</span><span class="p">,</span><span class="mh">0x2eec</span><span class="p">(</span><span class="o">%</span><span class="n">rip</span><span class="p">)</span>        <span class="err">#</span> <span class="mi">4034</span> <span class="o">&lt;</span><span class="n">counter</span><span class="o">&gt;</span>
+    <span class="mi">1148</span><span class="o">:</span>	<span class="mi">8</span><span class="n">d</span> <span class="mo">04</span> <span class="mi">85</span> <span class="mo">06</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> 	<span class="n">lea</span>    <span class="mh">0x6</span><span class="p">(,</span><span class="o">%</span><span class="n">rax</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="o">%</span><span class="n">eax</span>
+    <span class="mf">114f</span><span class="o">:</span>	<span class="n">c3</span>                   	<span class="n">retq</span>   
+
+<span class="mo">0000000000001150</span> <span class="o">&lt;</span><span class="n">_Z5func2v</span><span class="o">&gt;:</span>
+    <span class="mi">1150</span><span class="o">:</span>	<span class="mi">8</span><span class="n">b</span> <span class="mo">05</span> <span class="n">de</span> <span class="mi">2</span><span class="n">e</span> <span class="mo">00</span> <span class="mo">00</span>    	<span class="n">mov</span>    <span class="mh">0x2ede</span><span class="p">(</span><span class="o">%</span><span class="n">rip</span><span class="p">),</span><span class="o">%</span><span class="n">eax</span>        <span class="err">#</span> <span class="mi">4034</span> <span class="o">&lt;</span><span class="n">counter</span><span class="o">&gt;</span>
+    <span class="mi">1156</span><span class="o">:</span>	<span class="mi">8</span><span class="n">d</span> <span class="mi">50</span> <span class="mo">01</span>             	<span class="n">lea</span>    <span class="mh">0x1</span><span class="p">(</span><span class="o">%</span><span class="n">rax</span><span class="p">),</span><span class="o">%</span><span class="n">edx</span>
+    <span class="mi">1159</span><span class="o">:</span>	<span class="mi">89</span> <span class="mi">15</span> <span class="n">d5</span> <span class="mi">2</span><span class="n">e</span> <span class="mo">00</span> <span class="mo">00</span>    	<span class="n">mov</span>    <span class="o">%</span><span class="n">edx</span><span class="p">,</span><span class="mh">0x2ed5</span><span class="p">(</span><span class="o">%</span><span class="n">rip</span><span class="p">)</span>        <span class="err">#</span> <span class="mi">4034</span> <span class="o">&lt;</span><span class="n">counter</span><span class="o">&gt;</span>
+    <span class="mf">115f</span><span class="o">:</span>	<span class="n">c1</span> <span class="n">e0</span> <span class="mo">02</span>             	<span class="n">shl</span>    <span class="err">$</span><span class="mh">0x2</span><span class="p">,</span><span class="o">%</span><span class="n">eax</span>
+    <span class="mi">1162</span><span class="o">:</span>	<span class="n">c3</span>                   	<span class="n">retq</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="优化程序性能">优化程序性能</h2>
+<h3 id="例子">例子</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// 未经过优化的原始代码
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">combine1</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="n">IDENT</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">data_t</span> <span class="n">val</span><span class="p">;</span>
+        <span class="n">get_vec_element</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">);</span>
+        <span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="o">*</span><span class="n">dest</span> <span class="n">OP</span> <span class="n">val</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 通过代码移动（code motion），消除低效的循环
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">combine2</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="n">IDENT</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">data_t</span> <span class="n">val</span><span class="p">;</span>
+        <span class="n">get_vec_element</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">);</span>
+        <span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="o">*</span><span class="n">dest</span> <span class="n">OP</span> <span class="n">val</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 消除循环体内函数调用
+</span><span class="c1">// （然鹅性能并没有变化，甚至稍稍差了些，这又是另外的影响因素了（不必要的内存引用问题
+</span><span class="c1"></span><span class="n">dest_t</span> <span class="o">*</span><span class="nf">get_vec_start</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">combine3</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="n">data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">get_vec_start</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="n">IDENT</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="o">*</span><span class="n">dest</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>   
+<span class="p">}</span> 
+
+<span class="c1">// 减少不必要的内存引用
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">combine4</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="n">data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">get_vet_start</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="n">data_t</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">IDENT</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="n">acc</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="消除低效的循环">消除低效的循环</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="n">size_t</span> <span class="nf">strlen</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">long</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">s</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">s</span><span class="o">++</span><span class="p">;</span>
+        <span class="n">len</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">len</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">lower1</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="sc">&#39;A&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;Z&#39;</span><span class="p">)</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="sc">&#39;A&#39;</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">lower2</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="sc">&#39;A&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;Z&#39;</span><span class="p">)</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="sc">&#39;A&#39;</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;LALALALA&#34;</span><span class="p">;</span>
+    <span class="n">lower1</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>经典例子了，以前真的都是按<code>lower1()</code>写的 <del>，理由嘛，觉得写局部变量挺不好看的</del>，😅。</p>
+<p><img src="/Picbed/2021_02/0201_01.png" alt="lower1 VS lower2"></p>
+<h3 id="减少过程调用">减少过程调用</h3>
+<p>见例子中的 <code>combine2()</code> =&gt; <code>combine3()</code> 。</p>
+<h3 id="消除不必要的内存引用">消除不必要的内存引用</h3>
+<p><img src="/Picbed/2021_02/0201_02.png" alt="combine2 VS combine3"></p>
+<p><code>combine3()</code> 明明减少了过程调用，为什么性能没有提升呢？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">; Inner loop of combine3. data_t = double, OP = *
+; dest in %rbx, data+i in %rdx, data+length in %rax
+
+1	.L17:								; loop:
+2		vmovsd (%rbx), %xmm0			;	Read product from dest
+3		vmulsd (%rdx), %xmm0, %xmm0		; 	Multiply product by data[i]
+4		vmovsd %xmm0, (%rbx)			; 	Store product at dest
+5		addq $8, %rdx					;	Increment data+i
+6		cmpq %rax, %rdx					;	Compare to data+length
+7		jne .L17						; 	if != , goto loop
+</code></pre></td></tr></table>
+</div>
+</div><p>$2$ ～ $3$ 行循环体内将数据读出、计算、写回，实际上没有必要，上一次写入的数就是这一次要读出的数，也就是说 <code>combine3()</code> 性能没达到预期是内存引用造成的。</p>
+<p>解决不必要的内存引用，可以采取引入用以累积计算值的临时变量，在循环完成后，再将结果写入到内存中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">; Innver loop of combine4, data_t = double, OP = *
+; acc in %xmm0, data+i in %rdx, data+length in %rax
+1	.L25:								; loop:
+2		vmulsd (%rdx), %xmm0, %xmm0		;	Multiply acc by data[i]
+3		addq $8, %rdx					;	Increment data+i
+4		cmpq %rax, %rdx					; 	Compare to data+length
+5		jne .L25						; 	if != , goto loop
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/Picbed/2021_02/0202_00.png" alt="combine3 VS combine4"></p>
+<p>那么，编译器是否应该足够优秀到可以将 <code>combine3()</code> 优化成 <code>combine4()</code> 呢？</p>
+<p>不能，同样是内存别名引用问题，当 <code>dest = get_vec_start(v) + get_vec_length(v)</code> 时，<code>combine3()</code> 和 <code>combine4()</code> 的结果是不同的，实际上 <code>combine4()</code> 才是符合预期功能的，问题是编译器不知道程序员写下这段代码的意图，所以采取“直译”的方式，不加改动。</p>
+<p>如果非要让编译器优化呢？当对 <code>combine3()</code> 开 $O2$ 优化时，性能依旧会比 $O1$ 好得多，其生成的指令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">; Innver loop of combine3, data_t = double, OP = *
+; dest in $rbx, data+i in %rdx, data+length in %rax
+; Accumulated product in %xmm0
+1	.L22:								; loop:
+2		vmulsd (%rdx), %xmm0, %xmm0		;	Multiply product by data[i]
+3		addq $8, %rdx					;	Increment data+i
+4		cmpq %rax, %rdx					; 	Compare to data+length
+5		vmovsd %xmm0, (%rbx)			; 	Store product at dest
+6		jne .L25						; 	if != , goto loop
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/Picbed/2021_02/0202_01.png" alt="combine3w"></p>
+<p>和<code>combine4()</code> 挺接近了，但还是忠实的实现了<code>combine3()</code>的C语言代码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// 减少不必要的内存引用
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">combine3w</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="n">data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">get_vet_start</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="n">data_t</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">IDENT</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="n">acc</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="n">acc</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>不得不说，指针有利也有弊。</p>
+<h2 id="循环展开">循环展开</h2>
+<p>好处有二：一是减少了条件测试，二是展开有利于编译器进行优化。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">// 2x1 展开
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">combine5</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">long</span> <span class="n">len</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="kt">long</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">get_vec_start</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="n">data_t</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">IDENT</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">limit</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">acc</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="n">acc</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/Picbed/2021_02/0202_06.png" alt="combine4 VS combine5"></p>
+<h2 id="提高并行性">提高并行性</h2>
+<h4 id="多个累计变量">多个累计变量</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">// 2x2 展开
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">combine6</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">long</span> <span class="n">len</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="kt">long</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">get_vec_start</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="n">data_t</span> <span class="n">acc0</span> <span class="o">=</span> <span class="n">IDENT</span><span class="p">;</span>
+    <span class="n">data_t</span> <span class="n">acc1</span> <span class="o">=</span> <span class="n">IDENT</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">limit</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">acc0</span> <span class="o">=</span> <span class="n">acc0</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">acc1</span> <span class="o">=</span> <span class="n">acc1</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">acc0</span> <span class="o">=</span> <span class="n">acc0</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="n">acc0</span> <span class="n">OP</span> <span class="n">acc1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/Picbed/2021_02/0202_07.png" alt="combine5 VS combine6"></p>
+<p>指令并行在CPE 的表现就是突破延迟界限，当然吞吐量界限突破不了。</p>
+<h2 id="理解现代处理器">理解现代处理器</h2>
+<p>前面说到的优化程序性能是硬件无关的，想要进一步提高程序性能，必须要考虑处理器微体系结构的优化，也就是处理器用来执行指令的底层系统设计。</p>
+<p>这里会遇到两个限制程序性能的界限，一是延迟界限（latency bound），诸如数据相关等限制处理器并行能力的情况，能够影响到程序性能，二是吞吐量界限（throughput bound），这是刻画处理器功能单元原始计算能力的，是程序性能的根本限制。</p>
+<p>拿前面最后的优化版本<code>combine4()</code>举例：</p>
+<p><img src="/Picbed/2021_02/0202_04.png" alt="latency bound and throughput bound"></p>
+<p>又来了一个经典的例子，多项式求值。
+$$
+a_{0} + a_{1}x + a_{2}x^{2}+ &hellip; + a_{n}x^{n}
+$$</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// 常规求和
+</span><span class="c1"></span><span class="kt">double</span> <span class="nf">poly</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">long</span> <span class="n">degree</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="kt">double</span> <span class="n">xpwr</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">degree</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">xpwr</span><span class="p">;</span>		<span class="c1">// 一次浮点加法一次浮点乘法
+</span><span class="c1"></span>        <span class="n">xpwr</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">xpwr</span><span class="p">;</span>			<span class="c1">// 一次浮点乘法
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 秦九韶算法
+</span><span class="c1"></span><span class="kt">double</span> <span class="nf">polyh</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">long</span> <span class="n">degree</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">degree</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">degree</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span> <span class="o">*</span> <span class="n">result</span><span class="p">;</span>		<span class="c1">// 一次浮点加法一次浮点乘法
+</span><span class="c1"></span>        <span class="c1">// 数据相关，所以 CPE = 3 + 5 = 8
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/Picbed/2021_02/0202_05.png" alt="poly"></p>
+<p>csapp在假定如下性能参数的情况下，得到 <code>poly()</code> CPE为5，<code>polyh()</code> CPE为8，即后者性能不如前者。</p>
+<p>首先浮点乘法单元是有两个的，那么 <code>a[i] * xpwr</code> 和 <code>x * xpwr</code> 可以并行计算，而对于 <code>result</code> 的更新时间为啥没了，这就是流水线的功劳了。</p>
+<h2 id="总结">总结</h2>
+<ul>
+<li>高级设计：选择合适的算法和数据结构</li>
+<li>基本编码原则：避免限制优化的因素，使编译器生成高效的代码
+<ul>
+<li>消除连续的函数调用</li>
+<li>消除不必要的内存引用：引入中间变量，只在最后将结果更新到数组等用到内存引用的地方</li>
+</ul>
+</li>
+<li>低级优化
+<ul>
+<li>展开循环（kx1展开）</li>
+<li>使用多个累计变量（1xk展开）和重新结合等技术</li>
+<li>用功能性的风格重写条件操作：少用数据控制，多用数据传送</li>
+</ul>
+</li>
+</ul>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/notes/">notes</a>
+          <a href="/tags/csapp/">csapp</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">毕业设计</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/vim%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%E7%AC%94%E8%AE%B0/">
+            <span class="next-text nav-default">Vim实用技巧笔记</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=Snl5fn5-e318cn0KOztkKSUn" class="iconfont icon-email" title="email"></a>
+      <a href="https://stackoverflow.com/users/9786406/lttzz" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://github.com/lttzz" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/lttzz" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.douban.com/people/196540309/" class="iconfont icon-douban" title="douban"></a>
+      <a href="https://space.bilibili.com/74153503" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://www.lttzz.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>lttzz</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        tags: 'ams',
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-140228231-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
