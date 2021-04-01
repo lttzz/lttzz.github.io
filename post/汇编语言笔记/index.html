@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.80.0 with theme even" />
+<meta name="generator" content="Hugo 0.81.0 with theme even" />
 
 
 <link rel="canonical" href="https://www.lttzz.cn/post/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" />
@@ -40,26 +40,22 @@
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.af7fd1da18d66c2b017df5b4cae508ef44cfcac3fb4c7c7a327fe4f4f9e28b08.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="汇编语言笔记" />
 <meta property="og:description" content="网工没开汇编课，也得学不是。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.lttzz.cn/post/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" />
-<meta property="article:published_time" content="2019-03-17T14:38:51+08:00" />
-<meta property="article:modified_time" content="2019-03-17T14:38:51+08:00" />
+<meta property="og:url" content="https://www.lttzz.cn/post/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-03-17T14:38:51&#43;08:00" />
+<meta property="article:modified_time" content="2019-03-17T14:38:51&#43;08:00" />
+
 <meta itemprop="name" content="汇编语言笔记">
-<meta itemprop="description" content="网工没开汇编课，也得学不是。">
-<meta itemprop="datePublished" content="2019-03-17T14:38:51+08:00" />
-<meta itemprop="dateModified" content="2019-03-17T14:38:51+08:00" />
+<meta itemprop="description" content="网工没开汇编课，也得学不是。"><meta itemprop="datePublished" content="2019-03-17T14:38:51&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-17T14:38:51&#43;08:00" />
 <meta itemprop="wordCount" content="19303">
-
-
-
-<meta itemprop="keywords" content="notes,assembly-language," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="notes,assembly-language," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="汇编语言笔记"/>
 <meta name="twitter:description" content="网工没开汇编课，也得学不是。"/>
 
@@ -846,15 +842,15 @@ end
 <pre class="chroma"><code class="language-fallback" data-lang="fallback">assume cs:code
    
 code segment
- mov ax,2000H
- mov ds,ax
- mov al,ds:[0]
- mov bl,ds:[1]
- mov cl,ds:[2]
- mov dl,ds:[3]
+	mov ax,2000H
+	mov ds,ax
+	mov al,ds:[0]
+	mov bl,ds:[1]
+	mov cl,ds:[2]
+	mov dl,ds:[3]
    	
- mov ax,4c00H
- int 21H
+	mov ax,4c00H
+	int 21H
 code ends
    
 end
@@ -995,17 +991,17 @@ end
 <pre class="chroma"><code class="language-fallback" data-lang="fallback">assume cs:code
    
 code segment
- dw 0123H,0456H,0789H,0abcH,0defH,0fedH,0cabH,987H
+	dw 0123H,0456H,0789H,0abcH,0defH,0fedH,0cabH,987H
    	
- mov bx,0
- mov ax,0
- mov cx,8
+	mov bx,0
+	mov ax,0
+	mov cx,8
 s:	add ax,cs:[bx]
- add bx,2
- loop s
+	add bx,2
+	loop s
    	
- mov ax,4c00H
- int 21H
+	mov ax,4c00H
+	int 21H
 code ends
    
 end
@@ -3218,7 +3214,7 @@ jcxz
 rep movsb
 ; 等价于
 s:	movsb
- loop s
+	loop s
    	
 ; 既然有根据df标志位决定具体执行操作的指令，那么必然就应该有主动改变df标志位的指令
 cld	; 将df标志位置0
@@ -3715,10 +3711,10 @@ end main
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-fallback" data-lang="fallback">data segment
- a db 1,2,3,4,5,6,7,8
- b dw 0
- c dw a,b	; c处存储的两个字型数据为标号a、b的偏移地址，相当于 c dw offset a,offset b
- d dd a,b	; d处存储的两个双字型数据为标号a、b的段地址和偏移地址
+	a db 1,2,3,4,5,6,7,8
+	b dw 0
+	c dw a,b	; c处存储的两个字型数据为标号a、b的偏移地址，相当于 c dw offset a,offset b
+	d dd a,b	; d处存储的两个双字型数据为标号a、b的段地址和偏移地址
              ; 相当于 d dw offset a, seg a, offset b, seg b
              ; seg操作符，功能为取得某个标号的段地址
 data ends
@@ -3803,7 +3799,7 @@ data ends
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
   <script type="text/javascript">
     window.MathJax = {
       tex: {
